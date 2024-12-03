@@ -1,12 +1,11 @@
 import mysql.connector
 import numpy as np
 from PIL import Image, ImageTk
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 from datetime import datetime
 import os
 import tkinter as tk
 from tkinter import filedialog, Label, Button, Text
-import uuid
 import shutil
 
 db_host = '192.168.35.100'
@@ -14,11 +13,11 @@ db_user = 'root'
 db_password = 'kiwicanggih40'
 db_name = 'db_ac'
 
-tflite_model_path = "model.tflite"
+tflite_model_path = "/home/kiwi/dataset/coba/main/model.tflite"
 classes = ["ht12", "z2m"]
 CONFIDENCE_THRESHOLD = 0.7
 
-interpreter = tf.lite.Interpreter(model_path=tflite_model_path)
+interpreter = tflite.Interpreter(model_path=tflite_model_path)
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
@@ -66,9 +65,11 @@ def upload_image(file_path, result_text, image_label):
 
     create_uploads_directory()
 
-    filename = str(uuid.uuid4()) + os.path.splitext(file_path)[1]
+    # Use the actual filename (no hash, just the original name)
+    filename = os.path.basename(file_path)
     upload_path = os.path.join('uploads', filename)
 
+    # Copy the file to the uploads directory
     shutil.copy(file_path, upload_path)
 
     image = preprocess_image(upload_path)
@@ -86,7 +87,11 @@ def upload_image(file_path, result_text, image_label):
     image_label.image = img
 
 def select_file(result_text, image_label):
-    file_path = filedialog.askopenfilename(title="Select an Image File", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
+    file_path = filedialog.askopenfilename(
+        title="Select an Image File", 
+        filetypes=[("Image Files", "*.jpg"), ("JPEG Images", "*.jpeg"), ("PNG Images", "*.png")]
+    )
+    
     if file_path:
         upload_image(file_path, result_text, image_label)
 
@@ -106,5 +111,3 @@ def create_gui():
     root.mainloop()
 
 create_gui()
-
-

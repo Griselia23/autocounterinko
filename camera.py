@@ -6,7 +6,6 @@ import mysql.connector
 from datetime import datetime
 import time
 
-# MySQL Database Connection Details
 db_host = 'localhost'
 db_user = 'root'
 db_password = ''
@@ -56,7 +55,7 @@ def insert_to_db(label, confidence, status="Processed"):
     conn.close()
 
 def display_camera():
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(2)
 
     last_capture_time = time.time()
 
