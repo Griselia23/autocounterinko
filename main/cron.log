@@ -1,0 +1,15 @@
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+qt.qpa.xcb: could not connect to display 
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/home/kiwi/miniconda3/envs/tensorflow15_env/lib/python3.7/site-packages/cv2/qt/plugins" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: xcb.
+
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+qt.qpa.xcb: could not connect to display 
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/home/kiwi/miniconda3/envs/tensorflow15_env/lib/python3.7/site-packages/cv2/qt/plugins" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: xcb.
+
+Aborted (core dumped)
